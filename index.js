@@ -85,3 +85,23 @@ app.use(router);
 app.listen(3000, function() {
   console.log("Node server running on http://localhost:3000");
 });
+
+
+
+//Devuelve un producto especifico al admin
+router.get('/cupones/:id', function(req, res) {
+    if(req.headers.auth == "admin"){
+        if(listaCupones[req.params.id] != undefined){
+            res.send(listaCupones[req.params.id]);
+        }
+        else{
+            res.status(404);
+            res.send("El cupon solicitado no se encuentra")
+        }
+        
+    }
+    else {
+        res.status(401);
+        res.send("No tiene autorización")
+    }
+});
