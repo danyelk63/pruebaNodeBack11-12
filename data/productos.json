@@ -1,0 +1,42 @@
+[
+    {
+        "id": 0,
+        "name": "Televisor"
+    },
+    {
+        "id": 1,
+        "name": "Nevera"
+    },
+    {
+        "id": 2,
+        "name": "Estufa"
+    },
+    {
+        "id": 3,
+        "name": "Consola de videojuegos"
+    },
+    {
+        "id": 4,
+        "name": "Aspiradora"
+    },
+    {
+        "id": 5,
+        "name": "Computador"
+    },
+    {
+        "id": 6,
+        "name": "Celular"
+    },
+    {
+        "id": 7,
+        "name": "Tablet"
+    },
+    {
+        "id": 8,
+        "name": "Audifonos"
+    },
+    {
+        "id": 9,
+        "name": "Cargador"
+    }
+]
