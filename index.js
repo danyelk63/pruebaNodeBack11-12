@@ -69,6 +69,17 @@ router.post('/cupones/crear', function(req, res) {
     }
 });
 
+//Devuelve una lista de cupones al admin
+router.get('/cupones', function(req, res) {
+    if(req.headers.auth == "admin"){
+        res.send(listaCupones);
+    }
+    else {
+        res.status(401);
+        res.send("No tiene autorización")
+    }
+});
+
 app.use(router);
 
 app.listen(3000, function() {
