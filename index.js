@@ -11,6 +11,8 @@ var router = express.Router();
 
 //Almacena toda la lista de productos
 var listaProductos = require("./data/productos.json");
+//Almacena toda la lista de cupones
+var listaCupones = require("./data/cupones.json");
 
 
 //Devuelve una lista de productos al admin
@@ -35,6 +37,31 @@ router.get('/productos/:id', function(req, res) {
             res.send("El producto solicitado no se encuentra")
         }
         
+    }
+    else {
+        res.status(401);
+        res.send("No tiene autorización")
+    }
+});
+
+//Añade un cupon nuevo solo puede acceder el admin
+router.post('/cupones/crear', function(req, res) {
+    if(req.headers.auth == "admin"){
+        if(req.body.product_id < listaProductos.length && req.body.product_id >= 0){
+
+            var fs = require("fs")
+
+            req.body.id = listaCupones.length;
+            listaCupones.push(req.body);
+            fs.writeFile("./data/cupones.json", JSON.stringify(listaCupones), "utf8", function(err){
+                if(err) throw err;
+              });
+            res.send(req.body);
+        }
+        else {
+            res.status(500)
+            res.send("El id no existe")
+        }
     }
     else {
         res.status(401);
