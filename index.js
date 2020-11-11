@@ -100,6 +100,26 @@ router.get('/cupones/:id', function(req, res) {
         }
         
     }
+    else if(req.headers.auth == "customer"){
+        if(listaCupones[req.params.id] != undefined){
+
+            var objCupon = listaCupones[req.params.id];
+
+            if((new Date(listaCupones[req.params.id].valid_until).getTime() - new Date().getTime()) >= 0 && new Date().getTime() - new Date(listaCupones[req.params.id].valid_since).getTime() >= 0){
+                objCupon.isValid = true;
+                res.send(objCupon);
+            }
+            else{
+                objCupon.isValid = false;
+                res.send(objCupon);
+            }
+        }
+        else{
+            res.status(404);
+            res.send("El cupon solicitado no se encuentra")
+        }
+        
+    }
     else {
         res.status(401);
         res.send("No tiene autorización")
