@@ -3,6 +3,9 @@ const express = require("express"),
     bodyParser  = require("body-parser"),
     methodOverride = require("method-override");
 
+const cors = require('cors');
+
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride());
@@ -88,7 +91,7 @@ app.listen(3000, function() {
 
 
 
-//Devuelve un producto especifico al admin
+//Devuelve un cupon especifico al admin y valida el cupon para el custommerñ
 router.get('/cupones/:id', function(req, res) {
     if(req.headers.auth == "admin"){
         if(listaCupones[req.params.id] != undefined){
